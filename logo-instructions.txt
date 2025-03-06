@@ -1,0 +1,26 @@
+# MySQL MCP Server Logo Instructions
+
+To complete the submission to the MCP marketplace, you'll need to create a 400x400 PNG logo for your MySQL MCP server.
+
+## Logo Requirements
+- Size: 400x400 pixels
+- Format: PNG with transparency
+- Content: A visual representation of MySQL and MCP integration
+
+## Suggested Design
+1. Use the MySQL dolphin logo as inspiration
+2. Combine it with the MCP logo or a database icon
+3. Use blue colors to match MySQL's branding
+4. Keep the design simple and recognizable at smaller sizes
+
+## Tools for Creating the Logo
+- Adobe Illustrator or Photoshop
+- Figma
+- Canva
+- GIMP (free alternative)
+
+## File Naming and Location
+Save the completed logo as `mysql-mcp-logo.png` in the root directory of the MySQL MCP server project.
+
+## Example Logo Description
+A blue MySQL dolphin icon with a database symbol, surrounded by a circular MCP-style connector icon, all on a transparent background.
