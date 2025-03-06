@@ -26,7 +26,14 @@ This MCP server bridges the gap between natural language interfaces and database
 
 ## Testing Confirmation
 
-I have tested giving Cline just the README.md and llms-install.md files and watched it successfully set up the server. The installation process is straightforward and well-documented.
+- [x] Verified all functions work correctly
+  - [x] list_tables
+  - [x] count_tables
+  - [x] search_tables
+  - [x] describe_table
+  - [x] execute_sql
+  - [x] create_note
+  - [x] Resource access (note:///{id})
 
 ## Additional Notes
 
