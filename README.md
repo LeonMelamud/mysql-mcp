@@ -53,6 +53,8 @@ A powerful MCP server that provides direct access to MySQL databases. This serve
 
 ## Installation
 
+The MySQL MCP server works with any AI assistant that supports the Model Context Protocol (MCP). Below are installation instructions for popular AI assistants:
+
 ### For Claude Desktop
 
 Add the server config to your Claude Desktop configuration file:
@@ -99,6 +101,99 @@ On Windows: `%APPDATA%\Code\User\globalStorage\saoudrizwan.claude-dev\settings\c
       "disabled": false,
       "autoApprove": []
     }
+  }
+}
+```
+
+### For Cursor
+
+Add the server config to your Cursor MCP settings file:
+
+On MacOS: `~/Library/Application Support/Cursor/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json`
+On Windows: `%APPDATA%\Cursor\User\globalStorage\saoudrizwan.claude-dev\settings\cline_mcp_settings.json`
+
+```json
+{
+  "mcpServers": {
+    "mysql": {
+      "command": "node",
+      "args": ["/path/to/mysql-server/build/index.js"],
+      "env": {
+        "MYSQL_HOST": "localhost",
+        "MYSQL_USER": "your_username",
+        "MYSQL_PASSWORD": "your_password",
+        "MYSQL_DATABASE": "your_database"
+      },
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}
+```
+
+### For Windsurf
+
+Add the server config to your Windsurf MCP settings file:
+
+On MacOS: `~/Library/Application Support/Windsurf/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json`
+On Windows: `%APPDATA%\Windsurf\User\globalStorage\saoudrizwan.claude-dev\settings\cline_mcp_settings.json`
+
+```json
+{
+  "mcpServers": {
+    "mysql": {
+      "command": "node",
+      "args": ["/path/to/mysql-server/build/index.js"],
+      "env": {
+        "MYSQL_HOST": "localhost",
+        "MYSQL_USER": "your_username",
+        "MYSQL_PASSWORD": "your_password",
+        "MYSQL_DATABASE": "your_database"
+      },
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}
+```
+
+### For Zed
+
+Add the server config to your Zed MCP settings file:
+
+On MacOS: `~/.config/zed/settings.json`
+On Linux: `~/.config/zed/settings.json`
+
+```json
+{
+  "context_servers": {
+    "mysql": {
+      "command": "node",
+      "args": ["/path/to/mysql-server/build/index.js"],
+      "env": {
+        "MYSQL_HOST": "localhost",
+        "MYSQL_USER": "your_username",
+        "MYSQL_PASSWORD": "your_password",
+        "MYSQL_DATABASE": "your_database"
+      }
+    }
+  }
+}
+```
+
+### For Other MCP-Compatible AI Assistants
+
+This server follows the standard MCP protocol and can be used with any MCP-compatible AI assistant. Refer to your AI assistant's documentation for specific configuration instructions. The general configuration pattern is:
+
+```json
+{
+  "command": "node",
+  "args": ["/path/to/mysql-server/build/index.js"],
+  "env": {
+    "MYSQL_HOST": "localhost",
+    "MYSQL_USER": "your_username",
+    "MYSQL_PASSWORD": "your_password",
+    "MYSQL_DATABASE": "your_database"
   }
 }
 ```
