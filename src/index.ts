@@ -237,7 +237,23 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         throw new Error("Search pattern is required");
       }
 
-      const [rows] = await pool.execute('SHOW TABLES WHERE Tables_in_' + process.env.MYSQL_DATABASE + ' LIKE ?', [pattern]);
+      // Get database name safely
+      const dbName = process.env.MYSQL_DATABASE;
+      if (!dbName) {
+        throw new Error("Database name not configured");
+      }
+
+      // Validate database name to prevent SQL injection
+      // Database names should only contain alphanumeric characters and underscores
+      if (!/^[a-zA-Z0-9_]+$/.test(dbName)) {
+        throw new Error(`Invalid database name configuration`);
+      }
+
+      // Now safe to use in SQL query with backticks
+      const [rows] = await pool.execute(
+        `SHOW TABLES WHERE \`Tables_in_${dbName}\` LIKE ?`,
+        [pattern]
+      );
       const tables = (rows as any[]).map(row => Object.values(row)[0]);
 
       return {
@@ -254,6 +270,12 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         throw new Error("Table name is required");
       }
 
+      // Validate table name to prevent SQL injection
+      // Table names should only contain alphanumeric characters, underscores, and hyphens
+      if (!/^[a-zA-Z0-9_-]+$/.test(table)) {
+        throw new Error(`Invalid table name: ${table}`);
+      }
+
       // First verify the table exists
       const [tables] = await pool.execute('SHOW TABLES');
       const tableExists = (tables as any[]).some(row => Object.values(row)[0] === table);
@@ -262,8 +284,8 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         throw new Error(`Table '${table}' does not exist`);
       }
 
-      // Get table structure
-      const [rows] = await pool.execute(`DESCRIBE ${table}`);
+      // Get table structure - safe to use after validation
+      const [rows] = await pool.execute(`DESCRIBE \`${table}\``);
       
       return {
         content: [{

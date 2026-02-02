@@ -18,7 +18,7 @@
     "inspector": "npx @modelcontextprotocol/inspector build/index.js"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "0.6.0",
+    "@modelcontextprotocol/sdk": "1.25.3",
     "dotenv": "^16.4.7",
     "mysql2": "^3.11.5"
   },
