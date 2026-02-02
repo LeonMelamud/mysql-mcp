@@ -245,6 +245,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
       // Validate database name to prevent SQL injection
       // Database names should only contain alphanumeric characters and underscores
+      // (hyphens are intentionally excluded for security, even though MySQL allows them when quoted)
       if (!/^[a-zA-Z0-9_]+$/.test(dbName)) {
         throw new Error(`Invalid database name configuration`);
       }
